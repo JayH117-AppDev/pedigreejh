@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "514441035496",
+    "project_id": "pedigree-f0028",
+    "storage_bucket": "pedigree-f0028.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514441035496:android:2e9ed0062c8f811014535d",
+        "android_client_info": {
+          "package_name": "com.jh.pedigreejh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514441035496-4lv76c985ca06jhf4aju096bbscjaqtv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjUerKZHf1Kno1NQiHH6GnQJrkrol5cFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514441035496-4lv76c985ca06jhf4aju096bbscjaqtv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
