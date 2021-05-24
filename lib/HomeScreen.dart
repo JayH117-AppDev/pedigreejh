@@ -265,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      '\$ '+pets.docs[i]['petPrice'],
+                      pets.docs[i]['petPrice'],
                       style: TextStyle(
                         fontFamily: "Bebas",
                         letterSpacing: 2.0,

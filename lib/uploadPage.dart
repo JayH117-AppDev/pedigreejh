@@ -43,6 +43,15 @@ class _UploadPageState extends State<UploadPage> {
 
   petMethods petObj = new petMethods();
 
+  static final List<String> petsList = ['Choose a Pet Type','Dog', 'Cat', 'Horse', 'Cattle', 'Avian', 'Marine', 'Exotic', 'Other'];
+
+  static final List<String> currencies = ['Euro', 'Pound'];
+  String curr;
+  String initial = petsList.first;
+  String initialCurr = currencies.first;
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,11 +105,40 @@ class _UploadPageState extends State<UploadPage> {
                     },
                   ),
                   SizedBox(height: 5.0),
-                  TextField(
-                    decoration: InputDecoration(hintText: 'Enter your pet type'),
-                    onChanged: (value) {
+                  DropdownButton<String>(
+                    isExpanded: true,
+                    value: initialCurr,
+                    items: currencies.map((item) => DropdownMenuItem(
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      value: item,
+                    )).toList(),
+                    onChanged: (value) => setState((){
+                      this.initialCurr = value;
+                      this.curr = value;
+                    }) ,
+                  ),
+                  SizedBox(height: 5.0),
+                  DropdownButton<String>(
+                    isExpanded: true,
+                    value: initial,
+                    items: petsList.map((item) => DropdownMenuItem(
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      value: item,
+                    )).toList(),
+                    onChanged: (value) => setState((){
+                      this.initial = value;
                       this.petType = value;
-                    },
+                    }) ,
                   ),
                   SizedBox(height: 5.0),
                   TextField(
@@ -153,6 +191,7 @@ class _UploadPageState extends State<UploadPage> {
                     ),
                     onPressed: (){
                       uploadFile();
+                      showAlertDialog();
                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                     },
                   ),
@@ -175,6 +214,26 @@ class _UploadPageState extends State<UploadPage> {
     );
 
   }
+
+  Future<void> showAlertDialog() async{
+    return showDialog(
+        context: this.context,
+        barrierDismissible: true,
+        builder: (context){
+          return AlertDialog(
+            title: Text('Post Successful'),
+            content: Text('Your ad has been successfully posted'),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+              ),
+            ],
+          );
+        });
+  }
+
 
   Future selectFile() async{
 
@@ -201,11 +260,18 @@ class _UploadPageState extends State<UploadPage> {
     final urlDownload = await snapshot.ref.getDownloadURL();
     fileUrl = urlDownload;
 
+    if(this.curr == 'Euro'){
+      this.curr = '€';
+    }
+    else{
+      this.curr = '£';
+    }
+
     Map<String, dynamic> petData ={
       'userName': this.userName,
       'uId': userId,
       'userNumber': this.userNumber,
-      'petPrice': this.petPrice,
+      'petPrice': this.curr+this.petPrice,
       'petType': this.petType,
       'petBreed': this.petBreed,
       'petLocation': this.petLocation,
