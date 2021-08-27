@@ -225,9 +225,9 @@ class _UploadPageState extends State<UploadPage> {
             content: Text('Your ad has been successfully posted'),
             actions: <Widget>[
               TextButton(
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
+                onPressed: (){
+                  Navigator.pop(context);
+                },
               ),
             ],
           );

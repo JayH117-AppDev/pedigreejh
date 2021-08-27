@@ -237,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     trailing:
-                    pets.docs[i]['uId'] == userId ?
+                    pets.docs[i]['uId'] == userId || userId == 'K0diCO0JRkXAosVdsL51UZW8wJz2'  ?
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -246,6 +246,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             onDoubleTap: ()
                             {
                               if(pets.docs[i]['uId'] == userId){
+                                petObj.deleteData(pets.docs[i].id);
+                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext c) => HomeScreen()));
+                              }
+                              else if(userId == 'K0diCO0JRkXAosVdsL51UZW8wJz2'){
                                 petObj.deleteData(pets.docs[i].id);
                                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext c) => HomeScreen()));
                               }
@@ -329,7 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 15.0),
                     child: Text(
-                      pets.docs[i]['description'],
+                       pets.docs[i]['description'],
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         color: Colors.black.withOpacity(0.6),
