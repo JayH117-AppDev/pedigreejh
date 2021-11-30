@@ -37,6 +37,8 @@ dependencies:
   timeago: ^3.0.2
   file_picker: ^3.0.1
   image_picker_web: ^2.0.2
+  url_launcher: ^6.0.9
+
 
 dev_dependencies:
   flutter_test:

@@ -10,6 +10,7 @@ import 'package:pedigreejh/uploadPage.dart';
 import 'dart:io' show File, Platform;
 // import 'package:image_picker/image_picker.dart';
 import 'package:timeago/timeago.dart' as tAgo;
+import 'package:url_launcher/url_launcher.dart';
 
 import 'functions.dart';
 import 'globalVar.dart';
@@ -213,7 +214,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: GestureDetector(
                         onTap: ()
                         {
-
                         },
                         child: Text(pets.docs[i]['userName'])
                     ),
@@ -320,10 +320,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             Icon(Icons.phone),
                             Padding(
                               padding: const EdgeInsets.only(left: 10.0),
-                              child: Align(
+                              child: ElevatedButton(
                                 child: Text(pets.docs[i]['userNumber']),
-                                alignment: Alignment.topRight,
-                              ),
+                                onPressed: () async{
+                                  launch('tel://' + pets.docs[i]['userNumber']);
+                                },
+                              ) ,
                             ),
                           ],
                         )

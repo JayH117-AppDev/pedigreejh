@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'DialogBox/errorDialog.dart';
 import 'HomeScreen.dart';
@@ -237,8 +238,8 @@ class _UploadPageState extends State<UploadPage> {
 
   Future selectFile() async{
 
-    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
-    final path = result.files.single.path;
+    final result = await ImagePicker.platform.pickImage( source: ImageSource.gallery, imageQuality: 50);
+    final path = result.path;
 
 
     setState(() {
